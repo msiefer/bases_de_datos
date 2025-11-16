@@ -1,0 +1,71 @@
+﻿CREATE DATABASE IF NOT EXISTS EMPLEADOS;
+USE EMPLEADOS;
+
+
+--
+
+
+CREATE TABLE `departamentos` (
+  `dep_no` smallint NOT NULL,
+  `dnombre` varchar(14) default NULL,
+  `localidad` varchar(10) NOT NULL,
+   PRIMARY KEY (`dep_no`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+-- 
+
+INSERT INTO `departamentos` (`dep_no`,`dnombre`,`localidad`) VALUES 
+ (10,'CONTABILIDAD','BARCELONA'),
+ (20,'INVESTIGACION','VALENCIA'),
+ (30,'VENTAS','MADRID'),
+ (40,'PRODUCCION','SEVILLA');
+
+
+
+
+
+
+
+CREATE TABLE `empleados` (
+  `emp_no` smallint NOT NULL,
+  `apellido` varchar(8) default NULL,
+  `oficio` varchar(10) default NULL,
+  `director` smallint default NULL,
+  `fecha_alta` date default NULL,
+,  `salario` decimal(7,2) default NULL,
+  `comision` decimal(6,2) default NULL,
+  `dep_no` smallint default NULL,
+   CONSTRAINT `FK1_emplea_departamentos` FOREIGN KEY (`DEP_NO`) REFERENCES `departamentos` (`DEP_NO`) ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `empleados` (`emp_no`,`apellido`,`oficio`,`director`,`fecha_alta`,`salario`,`comision`,`dep_no`) VALUES 
+ (7369,'SÁNCHEZ','VENDEDOR',7900,'1998-12-10',20400,NULL,20),
+ (7499,'ALONSO','VENDEDOR',7698,'1999-02-20',24000,400,30),
+ (7521,'LÓPEZ','EMPLEADO',7782,'2001-05-08',23500,NULL,10),
+ (7523,'MARTÍN','ANALISTA',7782,'2003-11-12',24530,NULL,20),
+ (7566,'JÍMENEZ','DIRECTOR',7839,'2000-11-04',20980,NULL,20),
+ (7599,'ARIEL','VENDEDOR',7698,'2003-12-20',34000,600,30),
+ (7600,'FRUTOS','DIRECTOR',7839,'2002-05-01',35000,NULL,30),
+ (7643,'LÓPEZ','EMPLEADO',7566,'1997-08-24',21000,300,10),
+ (7644,'LÓPEZ','EMPLEADO',7566,'1990-08-24',22000,400,20),
+ (7654,'MARTÍN','VENDEDOR',7698,'1999-09-28',25000,160,30),
+ (7690,'LINDE','EMPLEADO',7782,'2004-04-24',24000,NULL,20),
+ (7698,'GARRIDO','DIRECTOR',7839,'2003-05-01',38500,NULL,30),
+ (7782,'MARTÍNEZ','DIRECTOR',7839,'2004-06-09',24500,NULL,10),
+ (7839,'REY','PRESIDENTE',NULL,'2000-04-08',60000,NULL,10),
+ (7843,'GARRIDO','EMPLEADO',7566,'2001-08-24',24000,NULL,10),
+ (7844,'CALVO','VENDEDOR',7698,'2002-09-08',28000,0,30),
+ (7863,'HIESTE','ANALISTA',7566,'2002-09-12',23000,NULL,10),
+ (7876,'GIL','ANALISTA',7782,'2003-05-06',33500,NULL,20),
+ (7900,'JÍMENEZ','EMPLEADO',7782,'2004-03-24',24000,NULL,20),
+ (7983,'SUÁREZ','ANALISTA',7600,'2006-11-12',23200,NULL,20);
+
+
+
+--
+
+
+
+
